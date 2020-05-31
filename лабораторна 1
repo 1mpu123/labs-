@@ -1,0 +1,130 @@
+
+
+Python 3
+import matplotlib.pyplot as plt
+import time
+import random 
+from random import randint
+
+def partition(nums, low, high):  
+    # Выбираем средний элемент в качестве опорного
+    # Также возможен выбор первого, последнего
+    # или произвольного элементов в качестве опорного
+    pivot = nums[(low + high) // 2]
+    i = low - 1
+    j = high + 1
+    while True:
+        i += 1
+        while nums[i] < pivot:
+            i += 1
+
+        j -= 1
+        while nums[j] > pivot:
+            j -= 1
+
+        if i >= j:
+            return j
+
+        # Если элемент с индексом i (слева от опорного) больше, чем
+        # элемент с индексом j (справа от опорного), меняем их местами
+        nums[i], nums[j] = nums[j], nums[i]
+
+def quick_sort(nums):  
+    # Создадим вспомогательную функцию, которая вызывается рекурсивно
+    def _quick_sort(items, low, high):
+        if low < high:
+            # This is the index after the pivot, where our lists are split
+            split_index = partition(items, low, high)
+            _quick_sort(items, low, split_index)
+            _quick_sort(items, split_index + 1, high)
+
+    _quick_sort(nums, 0, len(nums) - 1)
+
+# Проверяем, что оно работает
+start = time.time()
+a1 = [random.randint(1,1000000) for b in range (100)]
+quick_sort(a1)  
+print(a1)
+end = time.time()
+time1 = end - start
+print(time1)
+import matplotlib.pyplot as plt
+import time
+import random 
+from random import randint
+​
+def partition(nums, low, high):  
+   
+    pivot = nums[(low + high) // 2]
+    i = low - 1
+    j = high + 1
+    while True:
+        i += 1
+        while nums[i] < pivot:
+            i += 1
+​
+        j -= 1
+        while nums[j] > pivot:
+            j -= 1
+​
+        if i >= j:
+            return j
+​
+        nums[i], nums[j] = nums[j], nums[i]
+​
+def quick_sort(nums):  
+   
+    def _quick_sort(items, low, high):
+        if low < high:
+            # This is the index after the pivot, where our lists are split
+            split_index = partition(items, low, high)
+            _quick_sort(items, low, split_index)
+            _quick_sort(items, split_index + 1, high)
+​
+    _quick_sort(nums, 0, len(nums) - 1)
+​
+
+start = time.time()
+a1 = [random.randint(1,1000000) for b in range (100)]
+quick_sort(a1)  
+print(a1)
+end = time.time()
+time1 = end - start
+print(time1)
+[27606, 59255, 74382, 99484, 125761, 129929, 134111, 143623, 149098, 160129, 189354, 204877, 206682, 208555, 212328, 222436, 244165, 247130, 261472, 264981, 268716, 273281, 279488, 282233, 287539, 296255, 299920, 304932, 318769, 320836, 324768, 330145, 337379, 348923, 351806, 356760, 362313, 363280, 391491, 399191, 413146, 414255, 417727, 422332, 433642, 440892, 483997, 487377, 492400, 497972, 499117, 528097, 543667, 544843, 550484, 553812, 554169, 560560, 578020, 585474, 590391, 594288, 595155, 620955, 622686, 627948, 636442, 653912, 659610, 665407, 682252, 682861, 699346, 710969, 715255, 733223, 735218, 740099, 753631, 754774, 755717, 777614, 783770, 787737, 790271, 800077, 801016, 830661, 860511, 885438, 895228, 901099, 912073, 918080, 931883, 940239, 960449, 972821, 990038, 991652]
+0.0010004043579101562
+start1 = time.time() 
+a2 = [random.randint(1,1000000) for b in range (1000)]
+quick_sort(a2)
+end1 = time.time()
+time2 = end1 - start1
+print(time2)
+​
+0.01600027084350586
+start1 = time.time() 
+a2 = [random.randint(1,1000000) for b in range (10000)]
+quick_sort(a2)
+end1 = time.time()
+time3 = end1 - start1
+print(time3)
+0.15598583221435547
+start1 = time.time() 
+a2 = [random.randint(1,1000000) for b in range (100000)]
+quick_sort(a2)
+end1 = time.time()
+time4 = end1 - start1
+print(time4)
+0.8000178337097168
+start1 = time.time() 
+a2 = [random.randint(1,1000000) for b in range (1000000)]
+quick_sort(a2)
+end1 = time.time()
+time5 = end1 - start1
+print(time5)
+8.815804958343506
+%matplotlib
+​
+plt.plot ([100,1000,10000,100000,1000000], [time1,time2,time3,time4,time5])
+plt.show()
+​
+Using matplotlib backend: Qt5Agg
